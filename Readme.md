@@ -18,7 +18,7 @@ Este proyecto es una API REST desarrollada con **Spring Boot** y **MongoDB** par
 ### 1. Clonar el repositorio
 
 ```
-git clone https://github.com/tu-usuario/tu-repositorio.git
+git clone https://github.com/avillalta/reto-springboot.git
 cd tu-repositorio
 ```
 ## 2. Configurar la base de datos
