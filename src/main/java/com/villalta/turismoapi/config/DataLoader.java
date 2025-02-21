@@ -14,6 +14,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.villalta.turismoapi.model.user.Role;
+import com.villalta.turismoapi.model.user.User;
+import com.villalta.turismoapi.repository.user.UserRepository;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
@@ -26,7 +34,8 @@ public class DataLoader {
             PointOfInterestRepository poiRepository,
             FlightRepository flightRepository,
             EventRepository eventRepository,
-            UserRepository userRepository) {
+            UserRepository userRepository,
+            PasswordEncoder passwordEncoder) {
 
         return args -> {
             // Cargar datos de hoteles
@@ -65,14 +74,13 @@ public class DataLoader {
                     new Event("Nochevieja en Madrid", "Celebración de Nochevieja en la Puerta del Sol.", LocalDateTime.of(2023, 12, 31, 22, 0), LocalDateTime.of(2024, 1, 1, 2, 0), "Madrid", 0.0)
             ));
 
-            /*/ Cargar datos de usuarios
+            // Cargar datos de usuarios (con contraseñas cifradas)
             userRepository.saveAll(Arrays.asList(
-                    new User("juan123", "juan@example.com", "password123", "USER"),
-                    new User("ana456", "ana@example.com", "password456", "USER"),
-                    new User("admin", "admin@example.com", "admin123", "ADMIN"),
-                    new User("laura789", "laura@example.com", "password789", "USER"),
-                    new User("carlos012", "carlos@example.com", "password012", "USER")
-            ));**/
+                    new User("user1", "user1@example.com", passwordEncoder.encode("password123"), Role.USER),
+                    new User("user2", "user2@example.com", passwordEncoder.encode("password456"), Role.USER),
+                    new User("admin", "admin@example.com", passwordEncoder.encode("admin123"), Role.ADMIN)
+            ));
+
         };
     }
 }

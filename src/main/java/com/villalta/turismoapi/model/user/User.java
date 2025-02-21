@@ -1,29 +1,43 @@
 package com.villalta.turismoapi.model.user;
 
-import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="users")
-@Data
+@Document(collection = "users")
 public class User {
+
     @Id
-    private String _id;
-    private String user;
+    private String id;
+
+    private String username;
     private String email;
-    private String token;
+    private String password;
+    private Role role; // Usamos el enum Role
+
+    public User() {}
+
+    public User(String username, String email, String password, Role role) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     // Getters y Setters
     public String getId() {
-        return _id;
+        return id;
     }
 
-    public String getUser() {
-        return user;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -34,11 +48,19 @@ public class User {
         this.email = email;
     }
 
-    public String getToken() {
-        return token;
+    public String getPassword() {
+        return password;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
