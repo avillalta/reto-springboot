@@ -51,14 +51,6 @@ public class EventController {
         return eventService.getEventsByLocation(location);
     }
 
-    // Buscar eventos por rango de fechas
-    @GetMapping("/search")
-    public List<Event> getEventsByDateRange(
-            @RequestParam LocalDateTime start,
-            @RequestParam LocalDateTime end) {
-        return eventService.getEventsByDateRange(start, end);
-    }
-
     // Buscar eventos por nombre
     @GetMapping("/name")
     public List<Event> getEventsByName(@RequestParam String name) {

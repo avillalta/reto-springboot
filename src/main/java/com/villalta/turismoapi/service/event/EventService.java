@@ -55,10 +55,6 @@ public class EventService {
         return eventRepository.findByLocation(location);
     }
 
-    // Buscar eventos por rango de fechas
-    public List<Event> getEventsByDateRange(LocalDateTime start, LocalDateTime end) {
-        return eventRepository.findByStartTimeBetween(start, end);
-    }
 
     // Buscar eventos por nombre
     public List<Event> getEventsByName(String name) {
